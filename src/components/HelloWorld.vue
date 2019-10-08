@@ -72,7 +72,7 @@
       <a-layout-content style="padding: 15px 16px">
         <a-row :gutter="16">
           <a-col :span="6">
-            <a-button type="primary">激活按钮</a-button>
+            <a-button type="primary" @click="$emit('on-reg')">激活按钮</a-button>
           </a-col>
           <a-col :span="6">
             <a-auto-complete :dataSource="dataSource" :filterOption="filterOption">
@@ -174,7 +174,7 @@ export default {
     }
   },
   created () {
-    this.$spin.show()
+    // this.$spin.show()
   }
 }
 </script>
