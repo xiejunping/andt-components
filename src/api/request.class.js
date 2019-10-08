@@ -71,6 +71,9 @@ export async function reqJson (config) {
 
 export async function reqData (config) {
   try {
+    config = Object.assign(config, {
+      cancelToken: source.token
+    })
     const response = await ReqClient.request(config)
     return await fmtResponse(response)
   } catch (e) {

@@ -27,7 +27,8 @@ export async function delay (data) {
   const res = await reqData({
     url: '/common/delay',
     method: 'POST',
-    data
+    data,
+    timeout: 68000
   })
   return res
 }

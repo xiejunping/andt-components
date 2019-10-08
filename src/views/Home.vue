@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App" @on-reg="getReg" />
-    <a-button type="primary"> 取消请求 </a-button>
+    <a-button type="primary" @click="canBtn">取消请求</a-button>
   </div>
 </template>
 
