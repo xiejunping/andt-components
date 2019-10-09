@@ -39,7 +39,7 @@ export default {
     //   console.log(data)
     // })
 
-    delay().then(data => {
+    Promise.all([delay(), delay()]).then(data => {
       console.log(data)
     })
   },

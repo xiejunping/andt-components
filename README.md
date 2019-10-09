@@ -39,3 +39,6 @@ andt-design-vue  中的spin的用法很有局限性，
 不支持相对位置显示
 不支持全局方法显示与关闭
 可以包裹，但不能在子组件中关闭
+
+### 接口请求
+- 优化原有的三种方式的请求 `json`,`x-www-form-urlencoded`,`form-data`
