@@ -28,7 +28,7 @@ export async function delay (data) {
     url: '/common/delay',
     method: 'POST',
     data,
-    timeout: 68000
+    timeout: 60000
   })
   return res
 }

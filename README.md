@@ -43,6 +43,7 @@ andt-design-vue  中的spin的用法很有局限性，
 ### 接口请求
 - 优化原有的三种方式的请求 `json`,`x-www-form-urlencoded`,`form-data`
 
-- 分别对应 `request.class.js` 里的 `reqJson`,`reqData`,`reqFormData` 同时在这次优化请求中增加了取消方法，并深度测试了其取消功能，在单接口或是多接口的同时，都可以使用取消机制
+- 分别对应 `request.class.js` 里的 `reqJson`,`reqData`,`reqFormData` 同时在这次优化请求中增加了`cancelRequest`取消方法，并深度测试了其取消功能，在单接口或是多接口的同时，都可以使用取消机制
+>测试取消需配合长延迟接口做实验，代码中增加了`delay`60s,长等待接口，并测试了`axios`的超时限制，浏览器超时限制，`google chrome`的前端超时限制是4分钟。
 
 - 优化请求全屏遮罩动画，并增加取消按钮功能，在前后端开发的功能中，如出现错误，及接口等待时间过长，用户可手动取消，增加用户的体验度。
