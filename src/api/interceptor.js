@@ -2,7 +2,7 @@ import axios from 'axios'
 import Qs from 'qs'
 import FormData from 'form-data'
 import store from '@/store'
-import { Spin } from 'iview'
+// import { Spin } from 'iview'
 import { HOST_API } from './config'
 
 function formDate (obj) {

@@ -2,19 +2,25 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Layout, Row, Col, Button, AutoComplete, Select, Popover, notification, message, Modal } from 'ant-design-vue'
+import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag } from 'ant-design-vue'
 import { Spin } from 'iview'
 import 'iview/dist/styles/iview.css'
+import '@/assets/styles/index.less'
 
 Vue.use(Layout)
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Button)
-Vue.use(AutoComplete)
-Vue.use(Select)
-Vue.use(Popover)
-Vue.use(Modal)
-Vue.use(Spin)
+  .use(Row)
+  .use(Col)
+  .use(Button)
+  .use(Icon)
+  .use(AutoComplete)
+  .use(Select)
+  .use(Popover)
+  .use(Modal)
+  .use(Spin)
+  .use(Input)
+  .use(Checkbox)
+  .use(Radio)
+  .use(Tag)
 
 Vue.prototype.$message = message
 Vue.prototype.$notification = notification
