@@ -126,12 +126,32 @@
           <span>{{pricing}}</span>
         </a-col>
       </a-row>
+      <a-row>
+        <a-col :span="6">
+          <span>投放时段</span>
+        </a-col>
+        <a-col :span="18">
+          <drag-weektime
+            v-model="mult_timeRange"
+            :data="weektimeData"
+            @on-clear="clearWeektime">
+          </drag-weektime>
+        </a-col>
+      </a-row>
+      <a-row>
+        <a-col :span="6"></a-col>
+        <a-col :span="18">
+          <span>mult_timeRange:</span>
+          <span>{{mult_timeRange}}</span>
+        </a-col>
+      </a-row>
     </div>
   </div>
 </template>
 <script>
 import caohuaGames from '@/data/caohua_games.json'
 import cityData from '@/data/city_province.json'
+import weektimeData from '@/data/weektime_data'
 
 import InputLen from '@/components/len/input'
 import TextareaLen from '@/components/len/textarea'
@@ -142,6 +162,7 @@ import DropTree from '@/components/droptree'
 import Selecter from '@/components/selecter'
 
 import Version from '@/components/version'
+import DragWeektime from '@/components/drag-weektime'
 
 const iOSVersion = [ '11.3', '11.2', '11.1', '10.3', '10.2', '10.1', '9.3', '9.2', '9.1', '9.0', '8.2', '8.1', '8.0', '7.1', '7.0', '6.0', '5.1', '5.0', '4.3', '4.2', '4.1', '4.0' ]
 
@@ -187,15 +208,47 @@ function clearTagOfData (list, Vue) {
   }
 }
 
+function splicing (list) {
+  let same
+  let i = -1
+  let len = list.length
+  let arr = []
+
+  if (!len) return
+  while (++i < len) {
+    const item = list[i]
+    if (item.check) {
+      if (item.check !== Boolean(same)) {
+        arr.push(...['、', item.begin, '~', item.end])
+      } else if (arr.length) {
+        arr.pop()
+        arr.push(item.end)
+      }
+    }
+    same = Boolean(item.check)
+  }
+  arr.shift()
+  return arr.join('')
+}
+
 export default {
   name: 'About',
-  components: { InputLen, TextareaLen, Mixcheck, RadioItem, CheckItem, DropTree, Selecter, Version },
+  components: { InputLen, TextareaLen, Mixcheck, RadioItem, CheckItem, DropTree, Selecter, Version, DragWeektime },
   computed: {
     gameData () {
       return this.games.map(ret => {
         return {
           id: ret.id,
           label: ret.name
+        }
+      })
+    },
+    mult_timeRange () {
+      return this.weektimeData.map(item => {
+        return {
+          id: item.row,
+          week: item.value,
+          value: splicing(item.child)
         }
       })
     },
@@ -213,7 +266,8 @@ export default {
       cityData: cityData,
       ios_osv: '9.3',
       iOSVersion: iOSVersion,
-      pricing: 'PRICING_OCPM'
+      pricing: 'PRICING_OCPM',
+      weektimeData: weektimeData
     }
   },
   methods: {
@@ -245,6 +299,14 @@ export default {
     // 清空全部
     clearTag ({ list }) {
       clearTagOfData(list, this)
+    },
+    // 清空时间段
+    clearWeektime () {
+      this.weektimeData.forEach(item => {
+        item.child.forEach(t => {
+          this.$set(t, 'check', false)
+        })
+      })
     }
   }
 }
