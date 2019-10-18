@@ -12,6 +12,9 @@ module.exports = {
   css: {
     loaderOptions: {
       less: {
+        modifyvars: {
+          'font-family': 'PingFangSC-Regular, PingFang SC, tahoma, arial, "Hiragino Sans GB", "Microsoft yahei", "Segoe UI", roboto, "Helvetica Neue", sans-serif'
+        },
         javascriptEnabled: true
       }
     }

@@ -4,7 +4,6 @@ import router from './router'
 import store from './store'
 import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag } from 'ant-design-vue'
 import { Spin } from 'iview'
-import 'iview/dist/styles/iview.css'
 import '@/assets/styles/index.less'
 
 Vue.use(Layout)

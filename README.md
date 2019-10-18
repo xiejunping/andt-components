@@ -40,6 +40,61 @@ andt-design-vue  中的spin的用法很有局限性，
 不支持全局方法显示与关闭
 可以包裹，但不能在子组件中关闭
 
+### 字体的替换
+字体顺序不对，查看使用了两种UI框架，默认字体，字体顺序都不一样，怎么办
+
+- 方案一 单页应用 入口时 App.vue `#app` 这个样式增加字体可以解决一部分
+- iview 的主题更改，官方两种方式 
+    - 变量覆盖（推荐）
+
+        增加一个less 的入口文件
+
+        @import '~iview/src/styles/index.less'; // 引入iview样式
+
+        @import './reset.less';
+        @import './variable.less';
+
+        // Here are the variables to cover, such as:
+        @primary-color: #8c0776;
+
+        main.js 里面不要引用原来的css
+        `import 'iview/dist/styles/iview.css';`
+        这种方式删除
+
+        使用下面方式
+        `import '@/assets/styles/index.less'`
+
+- andt-design-vue 的主题怎么修改，官方方式一三种
+    - 变量覆盖 （与iview）一样，但是，如果使用的按需引入，不能使用这种方式
+        - 配置 less 变量文件 #
+另外一种方式是建立一个单独的 less 变量文件，引入这个文件覆盖 antd.less 里的变量。
+```js
+__at__import '~ant-design-vue/dist/antd.less'; // 引入官方提供的 less 样式入口文件
+__at__import 'your-theme-file.less'; // 用于覆盖上面定义的变量
+```
+      >注意，这种方式已经载入了所有组件的样式，不需要也无法和按需加载插件 babel-plugin-import 的 style 属性一起使用。
+
+      - 在 vue cli 3 中定制主题 #
+项目根目录下新建文件vue.config.js
+```js
+
+// vue.config.js
+module.exports = {
+  css: {
+    loaderOptions: {
+      less: {
+        modifyVars: {
+          'primary-color': '#1DA57A',
+          'link-color': '#1DA57A',
+          'border-radius-base': '2px',
+        },
+        javascriptEnabled: true
+      }
+    }
+  }
+}
+```
+
 ### 接口请求
 - 优化原有的三种方式的请求 `json`,`x-www-form-urlencoded`,`form-data`
 
@@ -47,3 +102,5 @@ andt-design-vue  中的spin的用法很有局限性，
 >测试取消需配合长延迟接口做实验，代码中增加了`delay`60s,长等待接口，并测试了`axios`的超时限制，浏览器超时限制，`google chrome`的前端超时限制是4分钟。
 
 - 优化请求全屏遮罩动画，并增加取消按钮功能，在前后端开发的功能中，如出现错误，及接口等待时间过长，用户可手动取消，增加用户的体验度。
+
+
