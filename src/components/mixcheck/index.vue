@@ -89,15 +89,16 @@ export default {
       border-bottom-right-radius: 4px;
     }
     &.c-wrapper-checked {
-      color: #2b85e4;
-      border-color: #2b85e4;
-      box-shadow: -1px 0 0 0 #2d8cf0;
+      color: #1890ff;
+      border-color: #1890ff;
+      background-color: #f0f9ff;
+      box-shadow: -1px 0 0 0 #1890ff;
       z-index: 1;
       &:first-child {
         box-shadow: none;
       }
       &:after {
-        border-left-color: #2b85e4;
+        border-left-color: #1890ff;
       }
     }
     &.c-wrapper-disabled {

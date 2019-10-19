@@ -26,4 +26,15 @@
     }
   }
 }
+/* radio button bg-color */
+.ant-radio-button-wrapper-checked {
+  background-color: #f0f9ff;
+}
+/* 合计 */
+.ant-table-thead .ant-table-tbody > tr {
+  background: #fbfbfb;
+  &:hover > td {
+    background: none;
+  }
+}
 </style>
