@@ -128,6 +128,38 @@
       </a-row>
       <a-row>
         <a-col :span="6">
+          <span>投放时间</span>
+        </a-col>
+        <a-col :span="18">
+          <!-- <date-picker
+            type="daterange"
+            :value="datetime"
+            :options="datetimeOption"
+            confirm
+            split-panels
+            placement="bottom-end"
+            placeholder="请选择查询日期范围"
+            style="width: 180px"
+            @on-change="handleDatetime"
+            @on-ok="confirmDatetime"
+            @on-clear-shortcut="clearShortCut" /> -->
+          <a-range-picker
+            v-model="datetime"
+            :ranges="dateOption"
+            :disabledDate="date => date && date.valueOf() > Date.now()"
+            :placeholder="['请选择查询日期开始', '请选择查询日期结束']"
+            @change="handleDatetime" />
+        </a-col>
+      </a-row>
+      <a-row>
+        <a-col :span="6"></a-col>
+        <a-col :span="18">
+          <span>datetime:</span>
+          <span>{{moment(datetime[0]).format('YYYY/MM/DD')}} ~ {{moment(datetime[1]).format('YYYY/MM/DD')}}</span>
+        </a-col>
+      </a-row>
+      <a-row>
+        <a-col :span="6">
           <span>投放时段</span>
         </a-col>
         <a-col :span="18">
@@ -145,10 +177,35 @@
           <span>{{mult_timeRange}}</span>
         </a-col>
       </a-row>
+      <a-row>
+        <a-col :span="6">
+          <span>开关阻止事件</span>
+        </a-col>
+        <a-col :span="18">
+          <a-popconfirm
+            title="是否确定打开这个开关？"
+            ok-text="确定"
+            cancel-text="取消"
+            @confirm="confirm"
+          >
+            <a-switch :checked="switchBell"></a-switch>
+          </a-popconfirm>
+        </a-col>
+      </a-row>
+      <a-row>
+        <a-col :span="6"></a-col>
+        <a-col :span="18">
+          <span>switchBell:</span>
+          <span>{{switchBell}}</span>
+        </a-col>
+      </a-row>
+
     </div>
   </div>
 </template>
 <script>
+import moment from 'moment'
+
 import caohuaGames from '@/data/caohua_games.json'
 import cityData from '@/data/city_province.json'
 import weektimeData from '@/data/weektime_data'
@@ -164,6 +221,15 @@ import Selecter from '@/components/selecter'
 import Version from '@/components/version'
 import DragWeektime from '@/components/drag-weektime'
 
+const shortCuts = {
+  '今天': [moment(), moment()],
+  '昨天': [moment().subtract(1, 'days'), moment()],
+  '本周': [moment().startOf('week'), moment()],
+  '过去7天': [moment().subtract(7, 'days'), moment()],
+  '上周': [moment(moment().startOf('week')).subtract(7, 'days'), moment(moment().endOf('week')).subtract(7, 'days')],
+  '本月': [moment().startOf('month'), moment()],
+  '上个月': [moment(moment().startOf('month')).subtract(1, 'months'), moment(moment().endOf('month')).subtract(1, 'months')]
+}
 const iOSVersion = [ '11.3', '11.2', '11.1', '10.3', '10.2', '10.1', '9.3', '9.2', '9.1', '9.0', '8.2', '8.1', '8.0', '7.1', '7.0', '6.0', '5.1', '5.0', '4.3', '4.2', '4.1', '4.0' ]
 
 function findCheck (list, arr = []) {
@@ -233,7 +299,7 @@ function splicing (list) {
 
 export default {
   name: 'About',
-  components: { InputLen, TextareaLen, Mixcheck, RadioItem, CheckItem, DropTree, Selecter, Version, DragWeektime },
+  components: { InputLen, TextareaLen, Mixcheck, RadioItem, CheckItem, DropTree, Selecter, Version, DragWeektime }, //, DatePicker
   computed: {
     gameData () {
       return this.games.map(ret => {
@@ -267,10 +333,14 @@ export default {
       ios_osv: '9.3',
       iOSVersion: iOSVersion,
       pricing: 'PRICING_OCPM',
-      weektimeData: weektimeData
+      weektimeData: weektimeData,
+      switchBell: false,
+      datetime: [moment('2019/10/19', 'YYYY/MM/DD'), moment('2019/10/20', 'YYYY/MM/DD')],
+      dateOption: shortCuts
     }
   },
   methods: {
+    moment,
     // 全选
     selectAll ({ list, check = true, current = '' }) {
       let data
@@ -307,6 +377,25 @@ export default {
           this.$set(t, 'check', false)
         })
       })
+    },
+    confirm () {
+      this.switchBell = !this.switchBell
+    },
+    clickSwitch () {
+      console.log(arguments[0])
+    },
+    handleDatetime (val) {
+      this.datetime = val
+    },
+    confirmDatetime () {
+      // this.comDate = JSON.parse(JSON.stringify(this.datetime))
+    },
+    clearShortCut () {
+      const shortCut = document.querySelectorAll('.ivu-picker-panel-shortcut')
+      const len = shortCut.length
+      for (let i = 0; i < len; i++) {
+        shortCut[i].style.background = 'none'
+      }
     }
   }
 }

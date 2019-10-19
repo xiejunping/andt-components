@@ -1,10 +1,14 @@
 import Vue from 'vue'
+import moment from 'moment'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag } from 'ant-design-vue'
+import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag, Switch, Popconfirm, DatePicker } from 'ant-design-vue'
 import { Spin } from 'iview'
+import 'moment/locale/zh-cn'
 import '@/assets/styles/index.less'
+
+moment.locale('zh-cn')
 
 Vue.use(Layout)
   .use(Row)
@@ -20,6 +24,9 @@ Vue.use(Layout)
   .use(Checkbox)
   .use(Radio)
   .use(Tag)
+  .use(Switch)
+  .use(Popconfirm)
+  .use(DatePicker)
 
 Vue.prototype.$message = message
 Vue.prototype.$notification = notification
