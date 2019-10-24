@@ -1,6 +1,8 @@
 # andt-components
 include ant-design-vue iview admin-front-framework
 
+投放组件demo [https://xiejunping.github.io/andt-components/#/about](https://xiejunping.github.io/andt-components/#/about)
+
 ## Project setup
 ```
 yarn install

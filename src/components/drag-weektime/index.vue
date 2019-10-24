@@ -118,7 +118,7 @@ export default {
     },
     cellDown (item) {
       const ele = document.querySelector(`td[data-week='${item.row}'][data-time='${item.col}']`)
-
+      this.check = Boolean(item.check)
       this.mode = 1
       if (ele) {
         this.width = ele.offsetWidth
@@ -129,15 +129,14 @@ export default {
       this.col = item.col
     },
     cellUp (item) {
-      const check = Boolean(item.check)
       if (item.col <= this.col && item.row <= this.row) {
-        this.selectWeek([item.row, this.row], [item.col, this.col], !check)
+        this.selectWeek([item.row, this.row], [item.col, this.col], !this.check)
       } else if (item.col >= this.col && item.row >= this.row) {
-        this.selectWeek([this.row, item.row], [this.col, item.col], !check)
+        this.selectWeek([this.row, item.row], [this.col, item.col], !this.check)
       } else if (item.col > this.col && item.row < this.row) {
-        this.selectWeek([item.row, this.row], [this.col, item.col], !check)
+        this.selectWeek([item.row, this.row], [this.col, item.col], !this.check)
       } else if (item.col < this.col && item.row > this.row) {
-        this.selectWeek([this.row, item.row], [item.col, this.col], !check)
+        this.selectWeek([this.row, item.row], [item.col, this.col], !this.check)
       }
 
       this.width = 0
