@@ -3,7 +3,7 @@ import moment from 'moment'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag, Switch, Popconfirm, DatePicker } from 'ant-design-vue'
+import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag, Switch, Popconfirm, DatePicker, Pagination, LocaleProvider } from 'ant-design-vue'
 import { Spin } from 'iview'
 import 'moment/locale/zh-cn'
 import '@/assets/styles/index.less'
@@ -27,6 +27,8 @@ Vue.use(Layout)
   .use(Switch)
   .use(Popconfirm)
   .use(DatePicker)
+  .use(Pagination)
+  .use(LocaleProvider)
 
 Vue.prototype.$message = message
 Vue.prototype.$notification = notification

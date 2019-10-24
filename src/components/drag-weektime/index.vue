@@ -95,8 +95,25 @@ export default {
         this.left = ele.offsetLeft
         this.top = ele.offsetTop
       } else {
-        this.width = (item.col - this.col + 1) * ele.offsetWidth
-        this.height = (item.row - this.row + 1) * ele.offsetHeight
+        if (item.col <= this.col && item.row <= this.row) {
+          this.width = (this.col - item.col + 1) * ele.offsetWidth
+          this.height = (this.row - item.row + 1) * ele.offsetHeight
+          this.left = ele.offsetLeft
+          this.top = ele.offsetTop
+        } else if (item.col >= this.col && item.row >= this.row) {
+          this.width = (item.col - this.col + 1) * ele.offsetWidth
+          this.height = (item.row - this.row + 1) * ele.offsetHeight
+          if (item.col > this.col && item.row === this.row) this.top = ele.offsetTop
+          if (item.col === this.col && item.row > this.row) this.left = ele.offsetLeft
+        } else if (item.col > this.col && item.row < this.row) {
+          this.width = (item.col - this.col + 1) * ele.offsetWidth
+          this.height = (this.row - item.row + 1) * ele.offsetHeight
+          this.top = ele.offsetTop
+        } else if (item.col < this.col && item.row > this.row) {
+          this.width = (this.col - item.col + 1) * ele.offsetWidth
+          this.height = (item.row - this.row + 1) * ele.offsetHeight
+          this.left = ele.offsetLeft
+        }
       }
     },
     cellDown (item) {
@@ -112,21 +129,28 @@ export default {
       this.col = item.col
     },
     cellUp (item) {
-      if (item.col >= this.col && item.row >= this.row) {
-        this.selectWeek([this.row, item.row], [this.col, item.col])
+      const check = Boolean(item.check)
+      if (item.col <= this.col && item.row <= this.row) {
+        this.selectWeek([item.row, this.row], [item.col, this.col], !check)
+      } else if (item.col >= this.col && item.row >= this.row) {
+        this.selectWeek([this.row, item.row], [this.col, item.col], !check)
+      } else if (item.col > this.col && item.row < this.row) {
+        this.selectWeek([item.row, this.row], [this.col, item.col], !check)
+      } else if (item.col < this.col && item.row > this.row) {
+        this.selectWeek([this.row, item.row], [item.col, this.col], !check)
       }
 
       this.width = 0
       this.height = 0
       this.mode = 0
     },
-    selectWeek (row, col) {
+    selectWeek (row, col, check) {
       const [minRow, maxRow] = row
       const [minCol, maxCol] = col
       this.data.forEach(item => {
         item.child.forEach(t => {
           if (t.row >= minRow && t.row <= maxRow && t.col >= minCol && t.col <= maxCol) {
-            this.$set(t, 'check', !t.check)
+            this.$set(t, 'check', check)
           }
         })
       })
@@ -165,7 +189,7 @@ export default {
   pointer-events: none;
 }
 .c-schedue-notransi {
-  transition: width .3s ease, height .3s ease;
+  transition: width .12s ease, height .12s ease, top .12s ease, left .12s ease;
 }
 .c-weektime-table {
   border-collapse: collapse;
@@ -194,7 +218,7 @@ export default {
     font-size: 12px;
     td {
       &.weektime-atom-item {
-        user-select: text;
+        user-select: unset;
         background-color: #f5f5f5;
       }
       &.ui-selected {

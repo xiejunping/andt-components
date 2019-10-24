@@ -4,9 +4,21 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <a-locale-provider :locale="locale">
+      <router-view/>
+    </a-locale-provider>
   </div>
 </template>
+<script>
+import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
+export default {
+  data () {
+    return {
+      locale: zhCN
+    }
+  }
+}
+</script>
 <style lang="less">
 #app {
   -webkit-font-smoothing: antialiased;

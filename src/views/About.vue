@@ -199,6 +199,16 @@
           <span>{{switchBell}}</span>
         </a-col>
       </a-row>
+      <a-row>
+        <a-col :span="6">分页</a-col>
+        <a-col :span="18">
+          <a-pagination
+            showSizeChanger
+            :defaultCurrent="3"
+            :total="500"
+          />
+        </a-col>
+      </a-row>
 
     </div>
   </div>
