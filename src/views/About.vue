@@ -210,6 +210,15 @@
         </a-col>
       </a-row>
 
+      <a-form :form="form">
+        <a-form-item lable="计划名称">
+          <input-len
+            v-decorator="['name', { initialValue: '' }]"
+            width="420"
+            :max="50"
+            placeholder="最大50个字符，1个中文等于2个字符" />
+        </a-form-item>
+      </a-form>
     </div>
   </div>
 </template>
@@ -331,6 +340,9 @@ export default {
     mult_city () {
       return findCheck(this.cityData)
     }
+  },
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
   data () {
     return {

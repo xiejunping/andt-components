@@ -37,8 +37,7 @@ export default {
   props: {
     value: {
       type: String,
-      required: true,
-      default: ''
+      required: true
     },
     width: {
       type: [String, Number]
@@ -71,6 +70,7 @@ export default {
       },
       set (val) {
         this.$emit('input', val)
+        this.$emit('change', val)
       }
     },
     classes () {
