@@ -111,7 +111,7 @@
           <span>投放目标</span>
         </a-col>
         <a-col :span="18">
-          <a-radio-group v-model="pricing">
+          <a-radio-group v-model="pricing" @change="changePricing">
             <a-radio-button value="PRICING_OCPM">转化量</a-radio-button>
             <a-radio-button value="PRICING_CPC">点击量</a-radio-button>
             <a-radio-button value="PRICING_CPM">展示量</a-radio-button>
@@ -211,12 +211,23 @@
       </a-row>
 
       <a-form :form="form">
-        <a-form-item lable="计划名称">
+        <a-form-item label="计划名称">
           <input-len
             v-decorator="['name', { initialValue: '' }]"
             width="420"
             :max="50"
             placeholder="最大50个字符，1个中文等于2个字符" />
+        </a-form-item>
+        <a-form-item label="投放目标">
+          <a-radio-group v-decorator="['pricing']" @change="changePricing">
+            <a-radio-button value="PRICING_OCPM">转化量</a-radio-button>
+            <a-radio-button value="PRICING_CPC">点击量</a-radio-button>
+            <a-radio-button value="PRICING_CPM">展示量</a-radio-button>
+            <a-radio-button value="PRICING_CPV">有效播放量</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item label="搜索框">
+          <a-input-search allow-clear enterButton @search="search" />
         </a-form-item>
       </a-form>
     </div>
@@ -418,7 +429,11 @@ export default {
       for (let i = 0; i < len; i++) {
         shortCut[i].style.background = 'none'
       }
-    }
+    },
+    changePricing () {
+      console.log(arguments)
+    },
+    search () {}
   }
 }
 </script>

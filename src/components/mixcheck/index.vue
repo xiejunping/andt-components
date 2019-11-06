@@ -10,7 +10,7 @@ export default {
   props: {
     value: {
       type: [Array, String, Number],
-      default: ''
+      required: true
     }
   },
   methods: {
@@ -38,7 +38,7 @@ export default {
     change (data) {
       this.currentValue = data
       this.$emit('input', data)
-      this.$emit('on-change', data)
+      this.$emit('change', data)
     }
   },
   watch: {
@@ -63,22 +63,20 @@ export default {
 <style lang="less" scoped>
 .c-mixcheck {
   position: relative;
-  display: inline-block;
-  vertical-align: middle;
+  display: inline-flex;
   font-size: 0;
-
   /deep/ .mixcheck-item {
-    display: inline-block;
     height: 32px;
     line-height: 30px;
     padding: 0px 15px;
     color: #333;
     font-size: 14px;
-    cursor: pointer;
+    margin: 0;
     user-select: none;
     background-color: #fff;
     border: 1px solid #dcdee2;
-    border-left: 0;
+    margin-right: -1px;
+    cursor: pointer;
     &:first-child {
       border-left: 1px solid #dcdee2;
       border-top-left-radius: 4px;
@@ -92,7 +90,6 @@ export default {
       color: #1890ff;
       border-color: #1890ff;
       background-color: #f0f9ff;
-      box-shadow: -1px 0 0 0 #1890ff;
       z-index: 1;
       &:first-child {
         box-shadow: none;
@@ -106,7 +103,7 @@ export default {
       background-color: #f7f7f7;
       border-color: #dcdee2;
       cursor: not-allowed;
-      box-shadow: none!important;
+      box-shadow: none !important;
       &:first-child {
         border-left-color: #dcdee2;
       }
