@@ -5,7 +5,6 @@ import router from './router'
 import store from './store'
 import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag, Switch, Popconfirm, DatePicker, Pagination, LocaleProvider, Form } from 'ant-design-vue'
 import { Spin } from 'iview'
-import 'moment/locale/zh-cn'
 import '@/assets/styles/index.less'
 
 moment.locale('zh-cn')

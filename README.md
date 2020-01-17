@@ -15,7 +15,7 @@ yarn run serve
 
 ### Compiles and minifies for production
 ```
-yarn run build
+yarn run build --report
 ```
 
 ### Run your tests
@@ -105,4 +105,5 @@ module.exports = {
 
 - 优化请求全屏遮罩动画，并增加取消按钮功能，在前后端开发的功能中，如出现错误，及接口等待时间过长，用户可手动取消，增加用户的体验度。
 
-
+优化打包模块
+引用一下静态CDN资源
