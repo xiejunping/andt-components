@@ -2,7 +2,7 @@ import axios from 'axios'
 import Qs from 'qs'
 import FormData from 'form-data'
 import store from '@/store'
-// import { Spin } from 'iview'
+import { Spin } from 'iview'
 import { HOST_API } from './config'
 
 function formDate (obj) {
@@ -36,12 +36,14 @@ const instance = axios.create({
   headers: {
     'X-Requested-With': 'XMLHttpRequest'
   },
-  // onUploadProgress: function (e) {
-  //   Spin.show()
-  // },
-  // onDownloadProgress: function (progressEvent) {
-  //   Spin.hide()
-  // },
+  onUploadProgress: function (progressEvent) {
+    console.log(progressEvent)
+    Spin.show()
+  },
+  onDownloadProgress: function (progressEvent) {
+    console.log(progressEvent)
+    Spin.hide()
+  },
   maxContentLength: 200000
 })
 

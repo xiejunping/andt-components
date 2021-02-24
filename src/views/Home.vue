@@ -2,14 +2,15 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App" @on-reg="getReg" />
-    <a-button type="primary" @click="canBtn">取消请求</a-button>
+    <a-button @click="getDelay">手动触发delay</a-button>
+    <a-button type="primary" @click="canBtn">关于我们</a-button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import { userLogin, userRegister, cancel, delay } from '@/api/user.model'
+import { userLogin, userRegister, delay } from '@/api/user.model'
 
 export default {
   name: 'home',
@@ -31,14 +32,6 @@ export default {
     //   console.log(data)
     // })
 
-    // userLogin({
-    //   username: 'admin',
-    //   password: 'U2FsdGVkX19Go0gRVmnFipB3nNsG33uLLLDHNDT+vZg=',
-    //   code: 'h7kb'
-    // }).then(data => {
-    //   console.log(data)
-    // })
-
     Promise.all([delay(), delay()]).then(data => {
       console.log(data)
     })
@@ -55,8 +48,22 @@ export default {
         console.log(data)
       })
     },
+    getDelay () {
+      delay().then(data => {
+        console.log(data)
+      })
+    },
+    login () {
+      userLogin({
+        username: 'admin',
+        password: 'U2FsdGVkX19Go0gRVmnFipB3nNsG33uLLLDHNDT+vZg=',
+        code: 'h7kb'
+      }).then(data => {
+        console.log(data)
+      })
+    },
     canBtn () {
-      cancel()
+      this.$router.push('about')
     }
   }
 }

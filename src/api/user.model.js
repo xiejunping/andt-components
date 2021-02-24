@@ -1,9 +1,5 @@
-
-import { reqJson, reqData, cancelRequest } from './request.class' // reqData, reqFormData, cancel
-
-export function cancel () {
-  cancelRequest()
-}
+// import { reqData, reqFormData, reqJson } from './request.class'
+import { reqJson, reqData } from './request.class'
 
 export async function userLogin (data) {
   const res = await reqJson({

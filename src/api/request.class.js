@@ -4,8 +4,7 @@ import { message } from 'ant-design-vue'
 import { RES_CODE } from './config'
 import { Spin } from 'iview'
 
-const CancelToken = axios.CancelToken
-const source = CancelToken.source()
+window.__axiosCannel = []
 
 async function fmtResponse (response) {
   const { status, data } = response
@@ -50,13 +49,17 @@ async function fmtResponse (response) {
 
 export async function reqJson (config) {
   try {
+    const CancelToken = axios.CancelToken
+    const source = CancelToken.source()
+    window.__axiosCannel.push({ source })
     config = Object.assign(config, {
       headers: {
         put: { 'Content-Type': 'application/json' },
         post: { 'Content-Type': 'application/json' },
         patch: { 'Content-Type': 'application/json' }
       },
-      cancelToken: source.token
+      cancelToken: source.token,
+      _: Date.now()
     })
     const response = await ReqClient.request(config)
     return await fmtResponse(response)
@@ -71,9 +74,14 @@ export async function reqJson (config) {
 
 export async function reqData (config) {
   try {
+    const CancelToken = axios.CancelToken
+    const source = CancelToken.source()
+    window.__axiosCannel.push({ source })
     config = Object.assign(config, {
-      cancelToken: source.token
+      cancelToken: source.token,
+      _: Date.now()
     })
+    console.log(config)
     const response = await ReqClient.request(config)
     return await fmtResponse(response)
   } catch (e) {
@@ -87,13 +95,17 @@ export async function reqData (config) {
 
 export async function reqFormData (config) {
   try {
+    const CancelToken = axios.CancelToken
+    const source = CancelToken.source()
+    window.__axiosCannel.push({ source })
     config = Object.assign(config, {
       headers: {
         put: { 'Content-Type': 'multipart/form-data' },
         post: { 'Content-Type': 'multipart/form-data' },
         patch: { 'Content-Type': 'multipart/form-data' }
       },
-      cancelToken: source.token
+      cancelToken: source.token,
+      _: Date.now()
     })
     const response = await ReqClient.request(config)
     return await fmtResponse(response)
@@ -107,5 +119,11 @@ export async function reqFormData (config) {
 }
 
 export function cancelRequest () {
-  source.cancel('请求已被取消')
+  if (window.__axiosCannel.length) {
+    window.__axiosCannel.forEach((ret, idx) => {
+      const msg = process.env.NODE_ENV === 'production' ? '' : '请求已被取消'
+      ret.source.cancel(msg)
+      delete window.__axiosCannel[idx]
+    })
+  }
 }
