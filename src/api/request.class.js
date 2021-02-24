@@ -81,8 +81,8 @@ export async function reqData (config) {
       cancelToken: source.token,
       _: Date.now()
     })
-    console.log(config)
     const response = await ReqClient.request(config)
+    console.log(response)
     return await fmtResponse(response)
   } catch (e) {
     if (axios.isCancel(e)) {

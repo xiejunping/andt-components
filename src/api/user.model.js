@@ -14,7 +14,8 @@ export async function userRegister (data) {
   const res = await reqData({
     url: '/user/register',
     method: 'POST',
-    data
+    data,
+    timeout: 120000
   })
   return res
 }
