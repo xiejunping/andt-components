@@ -12,6 +12,11 @@ module.exports = {
       'import',
       { libraryName: 'iview', libraryDirectory: 'src/components' },
       'iview'
+    ],
+    [
+      'import',
+      { libraryName: 'vxe-table', style: true },
+      'vxe'
     ]
   ]
 }

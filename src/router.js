@@ -23,6 +23,40 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
+      path: '/promote',
+      name: 'promote',
+      component: () => import(/* webpackChunkName: "promote" */ '@/views/promote/Layout.vue'),
+      children: [
+        {
+          path: '/adplan',
+          name: 'adplan',
+          component: () => import(/* webpackChunkName: "adplan" */ '@/views/promote/adplan/Main.vue'),
+          children: [
+            {
+              path: 'account',
+              name: 'account',
+              component: () => import(/* webpackChunkName: "account" */ '@/views/promote/adplan/AccountList.vue')
+            },
+            {
+              path: 'group',
+              name: 'group',
+              component: () => import(/* webpackChunkName: "group" */ '@/views/promote/adplan/GroupList.vue')
+            },
+            {
+              path: 'advertise',
+              name: 'advertise',
+              component: () => import(/* webpackChunkName: "advertise" */ '@/views/promote/adplan/AdvertList.vue')
+            },
+            {
+              path: 'idea',
+              name: 'idea',
+              component: () => import(/* webpackChunkName: "idea" */ '@/views/promote/adplan/IdeaList.vue')
+            }
+          ]
+        }
+      ]
+    },
+    {
       path: '/create',
       name: 'create',
       component: () => import(/* webpackChunkName: "create" */ './views/create/Layout.vue'),

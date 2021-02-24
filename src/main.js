@@ -6,6 +6,8 @@ import store from './store'
 import { Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag, Switch, Popconfirm, DatePicker, Pagination, LocaleProvider, Form } from 'ant-design-vue'
 import { Spin } from 'iview'
 import '@/assets/styles/index.less'
+import './plugins/utils'
+import './plugins/table'
 
 moment.locale('zh-cn')
 
