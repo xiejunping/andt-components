@@ -51,5 +51,6 @@ module.exports = {
         javascriptEnabled: true
       }
     }
-  }
+  },
+  parallel: require('os').cpus().length > 1
 }
