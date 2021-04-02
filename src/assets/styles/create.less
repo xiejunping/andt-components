@@ -1,0 +1,32 @@
+.row-item {
+    margin-bottom: 32px;
+    .col-item {
+        text-align: right;
+    }
+    i {
+        margin-right: 4px;
+        vertical-align: middle;
+        &.ivu-icon-md-add {
+            margin: 0;
+        }
+    }
+    .item-field {
+        font-size: 14px;
+        padding-right: 12px;
+    }
+    .row-item-must {
+        position: relative;
+        z-index: 5;
+        &:after {
+            content: " ";
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            position: absolute;
+            top: 6px;
+            right: 0;
+            background-color: #f45858;
+            border-radius: 3px;
+        }
+    }   
+}

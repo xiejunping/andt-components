@@ -109,3 +109,9 @@ module.exports = {
 引用一下静态CDN资源、本地资然
 
 在 public 增加 js 文件夹
+
+## 今日头条媒体
+
+- 创建广告组 http://localhost:8080/#/create/toutiao/campaign
+- 创建广告计划 http://localhost:8080/#/create/toutiao/plan
+- 创意创意 http://localhost:8080/#/create/toutiao/creative
