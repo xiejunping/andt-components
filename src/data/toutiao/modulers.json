@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "href": "group",
+    "name": "创建广告组",
+    "children": [
+      {
+        "id": 6,
+        "href": "group_creat",
+        "name": "基础信息"
+      }
+    ],
+    "state": 0
+  },
+  {
+    "id": 2,
+    "href": "plan",
+    "name": "设置广告计划",
+    "children": [
+      {
+        "id": 7,
+        "href": "plan_basic",
+        "name": "基础信息"
+      },
+      {
+        "id": 8,
+        "href": "plan_target",
+        "name": "投放目标"
+      },
+      {
+        "id": 11,
+        "href": "plan_client",
+        "name": "用户定向"
+      },
+      {
+        "id": 12,
+        "href": "plan_price",
+        "name": "预算与出价"
+      }
+    ],
+    "state": 0
+  },
+  {
+    "id": 3,
+    "href": "idea",
+    "name": "设置创意",
+    "children": [
+      {
+        "id": 13,
+        "href": "idea_position",
+        "name": "投放位置"
+      },
+      {
+        "id": 14,
+        "href": "idea_media",
+        "name": "创意素材"
+      },
+      {
+        "id": 15,
+        "href": "idea_tags",
+        "name": "创意分类和标签"
+      }
+    ],
+    "state": 0
+  }
+]

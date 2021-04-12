@@ -1,3 +1,4 @@
+const path = require('path')
 module.exports = {
   publicPath: './',
   configureWebpack: config => {
@@ -9,6 +10,13 @@ module.exports = {
         'vuex': 'Vuex',
         'axios': 'axios',
         'moment': 'moment'
+      }
+    }
+    config.resolve = {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        assets: path.resolve(__dirname, './src/assets')
       }
     }
     config.optimization = {

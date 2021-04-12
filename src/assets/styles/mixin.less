@@ -1,0 +1,26 @@
+.clear() {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    font-size: 0;
+  }
+}
+
+// 不换行
+.no-wrap() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scroll(@d:y) {
+  overflow-@{d}: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.round(@n:4) {
+  border-radius: unit(@n,px);
+}
+   
