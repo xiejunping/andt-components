@@ -30,20 +30,23 @@
           <a-switch checked-children="开启" un-checked-children="关闭" default-checked />
         </row-item>
       </row-form>
-
-      <a-row class="c-bar-submit">
-        <a-col :span="12">
-          <error-pop
-            v-model="formErr"
-            :state="Boolean(!errRes.length)"
-            :data="errRes"
-            @on-close="cannelError" />
-        </a-col>
-        <a-col :span="12" class="c-bar-btns">
-
-        </a-col>
-      </a-row>
     </moduler>
+
+    <a-row class="c-bar-submit">
+      <a-col :span="12">
+        <error-pop
+          v-model="formErr"
+          :state="Boolean(!errRes.length)"
+          :data="errRes"
+          @on-close="cannelError" />
+      </a-col>
+      <a-col :span="12" class="c-bar-btns">
+        <a-button type="primary" :loading="loading" @click="submitToNext">
+          <span v-if="!loading">保存并下一步</span>
+          <span v-else>提交中...</span>
+        </a-button>
+      </a-col>
+    </a-row>
   </div>
 </template>
 <script>
@@ -56,6 +59,7 @@ export default {
   components: { Moduler, RowForm: RowForm, RowItem: RowForm.Item, lenInput, ErrorPop },
   data () {
     return {
+      loading: null,
       formErr: true,
       errRes: [],
       form: {
@@ -67,6 +71,7 @@ export default {
     }
   },
   methods: {
+    submitToNext () {},
     cannelError () {}
   }
 }
@@ -75,6 +80,7 @@ export default {
 @import "~@/assets/styles/create";
 
 .c-bar-submit {
+  margin: 15px;
   padding: 15px;
   min-width: 1130px;
   background-color: #fff;
