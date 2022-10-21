@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+// import Vue from 'vue'
+// import VueRouter from 'vue-router'
 import NProgress from 'nprogress'
 import { cancelRequest } from '@/api/request.class'
 import 'nprogress/nprogress.css'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const router = new Router({
+const router = new VueRouter({
   routes: [
     {
       path: '/',

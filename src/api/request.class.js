@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import ReqClient from './interceptor'
 import { message } from 'ant-design-vue'
 import { RES_CODE } from './config'

@@ -3,7 +3,7 @@ import { reqJson, reqData } from './request.class'
 
 export async function userLogin (data) {
   const res = await reqJson({
-    url: '/user/login',
+    url: '/user-center/login',
     method: 'POST',
     data
   })
@@ -12,7 +12,7 @@ export async function userLogin (data) {
 
 export async function userRegister (data) {
   const res = await reqData({
-    url: '/user/register',
+    url: '/user-center/register',
     method: 'POST',
     data,
     timeout: 120000
@@ -22,7 +22,7 @@ export async function userRegister (data) {
 
 export async function delay (data) {
   const res = await reqData({
-    url: '/common/delay',
+    url: '/api-server/delay',
     method: 'POST',
     data,
     timeout: 60000
