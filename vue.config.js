@@ -1,8 +1,8 @@
 const path = require('path')
+const mode = process.env.NODE_ENV
 module.exports = {
-  publicPath: './',
+  publicPath: '/andt-components',
   configureWebpack: config => {
-    config.mode = process.env.NODE_ENV
     config.externals = {
       'vue': 'Vue',
       'vue-router': 'VueRouter',
