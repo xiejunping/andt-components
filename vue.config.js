@@ -3,14 +3,12 @@ module.exports = {
   publicPath: './',
   configureWebpack: config => {
     config.mode = process.env.NODE_ENV
-    if (config.mode === 'production') {
-      config.externals = {
-        'vue': 'Vue',
-        'vue-router': 'VueRouter',
-        'vuex': 'Vuex',
-        'axios': 'axios',
-        'moment': 'moment'
-      }
+    config.externals = {
+      'vue': 'Vue',
+      'vue-router': 'VueRouter',
+      'vuex': 'Vuex',
+      'axios': 'axios',
+      'moment': 'moment'
     }
     config.resolve = {
       extensions: ['.js', '.vue', '.json'],
@@ -26,15 +24,38 @@ module.exports = {
             name: 'vendors',
             test: /[\\/]node_modules[\\/]/,
             chunks: 'initial',
+            maxSize: 600000,
+            maxInitialRequests: 20,
             priority: 2,
+            reuseExistingChunk: true,
             enforce: true
           },
           common: {
             name: 'common',
             chunks: 'initial',
-            minChunks: 2,
             maxInitialRequests: 5,
-            priority: 1
+            minChunks: 2,
+            reuseExistingChunk: true,
+            priority: 1,
+            enforce: true
+          },
+          antdesign: {
+            name: 'ant-design-vue',
+            test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/,
+            chunks: 'initial',
+            maxSize: 600000,
+            reuseExistingChunk: true,
+            priority: 3,
+            enforce: true
+          },
+          iview: {
+            name: 'view-ui',
+            test: /[\\/]node_modules[\\/]iview[\\/]/,
+            chunks: 'initial',
+            maxSize: 600000,
+            reuseExistingChunk: true,
+            priority: 3,
+            enforce: true
           }
         }
       }
