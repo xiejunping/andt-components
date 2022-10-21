@@ -33,7 +33,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### 线上演示地址
 
-DEMO演示 [https://free.jsvue.cn/andt-components](http://free.jsvue.cn/andt-components)
+DEMO演示 [https://free.jsvue.cn/andt-components](https://free.jsvue.cn/andt-components/)
 
 ### 项目描述
 这是一个`vue-cli 3.x` 构建的vue框架，按需加载 `andt-design-vue` 和 `iview` 处理了不兼容的问题。
