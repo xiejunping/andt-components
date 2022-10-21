@@ -4,6 +4,7 @@ import NProgress from 'nprogress'
 import { cancelRequest } from '@/api/request.class'
 import 'nprogress/nprogress.css'
 
+const isProd = process.env.NODE_ENV === 'production'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -115,9 +116,14 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-router.afterEach(() => {
+router.afterEach((to) => {
   cancelRequest() // 取消请求
   NProgress.done()
+  if (to.fullPath && isProd) {
+    // 百度统计上报
+    window._hmt.push(['_setAutoPageview', false])
+    window._hmt.push(['_trackPageview', to.fullPath])
+  }
 })
 
 export default router

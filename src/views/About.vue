@@ -12,11 +12,13 @@
               v-model="name"
               width="420"
               :max="50"
+              v-peach:event="{category: 'components', action: 'inputLen'}"
               placeholder="最大50个字符，1个中文等于2个字符" />
             <textarea-len
               v-model="descript"
               width="420"
               :max="100"
+              v-peach:event="{category: 'components', action: 'textareaLen'}"
               placeholder="最大100个字符，1个中文等于2个字符" />
           </div>
         </a-col>
@@ -35,6 +37,7 @@
             <drop-tree
               v-model="gameId"
               :options="gameData"
+              v-peach:event="{category: 'components', action: 'droptree'}"
               noResultsText="无匹配数据"
               placeholder="请选择游戏"></drop-tree>
           </div>
@@ -52,7 +55,7 @@
           <span>运营商</span>
         </a-col>
         <a-col :span="18">
-          <mixcheck v-model="carrier">
+          <mixcheck v-model="carrier" v-peach:event="{category: 'components', action: 'mixcheck'}">
             <radio-item label="NONE">不限</radio-item>
             <check-item label="MOBILE">移动</check-item>
             <check-item label="UNICOM">联通</check-item>
@@ -76,6 +79,7 @@
             v-model="mult_city"
             :data="cityData"
             :title="['省份', '城市']"
+            v-peach:event="{category: 'components', action: 'selecter'}"
             @on-select="selectAll"
             @on-delete="delTag"
             @on-clear="clearTag" />
@@ -96,6 +100,7 @@
           <version
             v-model="ios_osv"
             :data="iOSVersion"
+            v-peach:event="{category: 'components', action: 'version'}"
             title="iOS版本" />
         </a-col>
       </a-row>
@@ -111,7 +116,7 @@
           <span>投放目标</span>
         </a-col>
         <a-col :span="18">
-          <a-radio-group v-model="pricing" @change="changePricing">
+          <a-radio-group v-model="pricing" v-peach:event="{category: 'components', action: 'aradiogroup'}" @change="changePricing">
             <a-radio-button value="PRICING_OCPM">转化量</a-radio-button>
             <a-radio-button value="PRICING_CPC">点击量</a-radio-button>
             <a-radio-button value="PRICING_CPM">展示量</a-radio-button>
@@ -146,6 +151,7 @@
           <a-range-picker
             v-model="datetime"
             :ranges="dateOption"
+            v-peach:event="{category: 'components', action: 'arangepicker'}"
             :disabledDate="date => date && date.valueOf() > Date.now()"
             :placeholder="['请选择查询日期开始', '请选择查询日期结束']"
             @change="handleDatetime" />
@@ -166,6 +172,7 @@
           <drag-weektime
             v-model="mult_timeRange"
             :data="weektimeData"
+            v-peach:event="{category: 'components', action: 'dragWeektime'}"
             @on-clear="clearWeektime">
           </drag-weektime>
         </a-col>
@@ -188,7 +195,7 @@
             cancel-text="取消"
             @confirm="confirm"
           >
-            <a-switch :checked="switchBell"></a-switch>
+            <a-switch v-peach:event="{category: 'components', action: 'aswitch'}" :checked="switchBell"></a-switch>
           </a-popconfirm>
         </a-col>
       </a-row>
@@ -227,7 +234,7 @@
           </a-radio-group>
         </a-form-item>
         <a-form-item label="搜索框">
-          <a-input-search allow-clear enterButton @search="search" />
+          <a-input-search allow-clear enterButton v-peach:event="{category: 'components', action: 'asearch'}" @search="search" />
         </a-form-item>
       </a-form>
     </div>

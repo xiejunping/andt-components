@@ -3,6 +3,7 @@
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Directives from './directives/'
 import {
   Layout, Row, Col, Button, Icon, AutoComplete, Select, Popover, notification, message, Modal, Input, Checkbox, Radio, Tag, Switch, Popconfirm, DatePicker, Pagination, LocaleProvider,
   Form, Steps, Anchor, InputNumber
@@ -14,6 +15,7 @@ import './plugins/table'
 
 moment.locale('zh-cn')
 
+Vue.use(Directives)
 Vue.use(Layout)
   .use(Row)
   .use(Col)
