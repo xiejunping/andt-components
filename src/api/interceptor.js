@@ -51,4 +51,9 @@ if (store.state.token) {
   instance.defaults.headers.common['Authorization'] = store.state.token
 }
 
+instance.interceptors.request.use((config) => {
+  console.log(config)
+  return config
+})
+
 export default instance

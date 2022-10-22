@@ -3,7 +3,7 @@
  * @param {Obj} settings水印配置参数
  */
 class WaterMark {
-  constructor({
+  constructor ({
     angle,
     pageX,
     pageY,
@@ -30,7 +30,7 @@ class WaterMark {
   }
 
   // 插入子集水印
-  creatElementItem(text) {
+  creatElementItem (text) {
     let x
     let y
     const fragment = document.createDocumentFragment()

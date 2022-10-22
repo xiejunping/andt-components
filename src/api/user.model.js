@@ -23,7 +23,6 @@ export async function userRegister (data) {
 export async function delay (data) {
   const res = await reqData({
     url: '/com-api/delay',
-    method: 'POST',
     data,
     timeout: 60000
   })

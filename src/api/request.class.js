@@ -52,7 +52,7 @@ export async function reqJson (config) {
     const CancelToken = axios.CancelToken
     const source = CancelToken.source()
     window.__axiosCannel.push({ source })
-    config = Object.assign(config, {
+    config = Object.assign({}, config, {
       headers: {
         put: { 'Content-Type': 'application/json' },
         post: { 'Content-Type': 'application/json' },
@@ -77,10 +77,11 @@ export async function reqData (config) {
     const CancelToken = axios.CancelToken
     const source = CancelToken.source()
     window.__axiosCannel.push({ source })
-    config = Object.assign(config, {
+    config = Object.assign({}, config, {
       cancelToken: source.token,
       _: Date.now()
     })
+    console.log(config, '==config')
     const response = await ReqClient.request(config)
     console.log(response)
     return await fmtResponse(response)
@@ -98,7 +99,7 @@ export async function reqFormData (config) {
     const CancelToken = axios.CancelToken
     const source = CancelToken.source()
     window.__axiosCannel.push({ source })
-    config = Object.assign(config, {
+    config = Object.assign({}, config, {
       headers: {
         put: { 'Content-Type': 'multipart/form-data' },
         post: { 'Content-Type': 'multipart/form-data' },
