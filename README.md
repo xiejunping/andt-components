@@ -1,7 +1,7 @@
 # andt-components
 include ant-design-vue iview admin-front-framework
 
-投放组件demo [https://xiejunping.github.io/andt-components/#/about](https://xiejunping.github.io/andt-components/#/about)
+投放组件DEMO演示 [https://free.jsvue.cn/andt-components/#/about](https://free.jsvue.cn/andt-components/#/about)
 
 ## Project setup
 ```
@@ -122,5 +122,3 @@ module.exports = {
 ### 2022 更新
 
 vue.config.js  中的配置 config.externals 使用 CDN 的引入 后，在项目中都可以使用对应的 window 下对应的变量直接使用，但是eslint可能会报错，
-
-接口api 因为 服务器 未续费跑路了，所以要再提供下接口
