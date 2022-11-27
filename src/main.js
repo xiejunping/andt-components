@@ -13,6 +13,9 @@ import '@/assets/styles/index.less'
 import './plugins/utils'
 import './plugins/table'
 
+import AdvtUI from 'advt-ui'
+import 'advt-ui/dist/style.css'
+
 moment.locale('zh-cn')
 
 Vue.use(Directives)
@@ -39,6 +42,7 @@ Vue.use(Layout)
   .use(Steps)
   .use(Anchor)
   .use(InputNumber)
+Vue.use(AdvtUI)
 
 Vue.prototype.$message = message
 Vue.prototype.$notification = notification

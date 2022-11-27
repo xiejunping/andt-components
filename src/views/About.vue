@@ -79,17 +79,14 @@
             v-model="mult_city"
             :data="cityData"
             :title="['省份', '城市']"
-            v-peach:event="{category: 'components', action: 'selecter'}"
-            @on-select="selectAll"
-            @on-delete="delTag"
-            @on-clear="clearTag" />
+            v-peach:event="{category: 'components', action: 'selecter'}" />
         </a-col>
       </a-row>
       <a-row>
         <a-col :span="6"></a-col>
         <a-col :span="18">
           <span>city:</span>
-          <span>{{mult_city.map(ret => ret.id)}}</span>
+          <span>{{mult_city}}</span>
         </a-col>
       </a-row>
       <a-row>
@@ -171,9 +168,7 @@
         <a-col :span="18">
           <drag-weektime
             v-model="mult_timeRange"
-            :data="weektimeData"
-            v-peach:event="{category: 'components', action: 'dragWeektime'}"
-            @on-clear="clearWeektime">
+            v-peach:event="{category: 'components', action: 'dragWeektime'}">
           </drag-weektime>
         </a-col>
       </a-row>
@@ -245,18 +240,6 @@ import moment from 'moment'
 
 import caohuaGames from '@/data/caohua_games.json'
 import cityData from '@/data/city_province.json'
-import weektimeData from '@/data/weektime_data'
-
-import InputLen from '@/components/len/input'
-import TextareaLen from '@/components/len/textarea'
-import Mixcheck from '@/components/mixcheck'
-import RadioItem from '@/components/mixcheck/radio-item'
-import CheckItem from '@/components/mixcheck/check-item'
-import DropTree from '@/components/droptree'
-import Selecter from '@/components/selecter'
-
-import Version from '@/components/version'
-import DragWeektime from '@/components/drag-weektime'
 
 const shortCuts = {
   '今天': [moment(), moment()],
@@ -269,74 +252,9 @@ const shortCuts = {
 }
 const iOSVersion = [ '11.3', '11.2', '11.1', '10.3', '10.2', '10.1', '9.3', '9.2', '9.1', '9.0', '8.2', '8.1', '8.0', '7.1', '7.0', '6.0', '5.1', '5.0', '4.3', '4.2', '4.1', '4.0' ]
 
-function findCheck (list, arr = []) {
-  list.forEach(ret => {
-    if (ret.check) arr.push(ret)
-    else if (ret.children && ret.children.length !== 0) {
-      findCheck(ret.children, arr)
-    }
-  })
-  return arr
-}
-
-function getNameOfData (list, value) {
-  let i = -1
-  let len = list.length
-  let homeItem = {}
-
-  while (++i < len) {
-    let item = list[i]
-
-    if (item.value === value) {
-      homeItem = item
-      break
-    } else if (item.children && item.children.length) {
-      let res = getNameOfData(item.children, value)
-      if (res.value) return res
-    }
-  }
-
-  return homeItem
-}
-
-function clearTagOfData (list, Vue) {
-  let i = -1
-  let len = list.length
-  while (++i < len) {
-    let item = list[i]
-    if (item.children && item.children.length) {
-      clearTagOfData(item.children, Vue)
-    }
-    Vue.$set(item, 'check', false)
-  }
-}
-
-function splicing (list) {
-  let same
-  let i = -1
-  let len = list.length
-  let arr = []
-
-  if (!len) return
-  while (++i < len) {
-    const item = list[i]
-    if (item.check) {
-      if (item.check !== Boolean(same)) {
-        arr.push(...['、', item.begin, '~', item.end])
-      } else if (arr.length) {
-        arr.pop()
-        arr.push(item.end)
-      }
-    }
-    same = Boolean(item.check)
-  }
-  arr.shift()
-  return arr.join('')
-}
-
 export default {
   name: 'About',
-  components: { InputLen, TextareaLen, Mixcheck, RadioItem, CheckItem, DropTree, Selecter, Version, DragWeektime }, //, DatePicker
+  components: { }, //, DatePicker
   computed: {
     gameData () {
       return this.games.map(ret => {
@@ -345,18 +263,6 @@ export default {
           label: ret.name
         }
       })
-    },
-    mult_timeRange () {
-      return this.weektimeData.map(item => {
-        return {
-          id: item.row,
-          week: item.value,
-          value: splicing(item.child)
-        }
-      })
-    },
-    mult_city () {
-      return findCheck(this.cityData)
     }
   },
   beforeCreate () {
@@ -369,55 +275,19 @@ export default {
       carrier: 'NONE',
       gameId: null,
       games: caohuaGames,
+      mult_city: [],
       cityData: cityData,
       ios_osv: '9.3',
       iOSVersion: iOSVersion,
       pricing: 'PRICING_OCPM',
-      weektimeData: weektimeData,
       switchBell: false,
+      mult_timeRange: '000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000',
       datetime: [moment('2019/10/19', 'YYYY/MM/DD'), moment('2019/10/20', 'YYYY/MM/DD')],
       dateOption: shortCuts
     }
   },
   methods: {
     moment,
-    // 全选
-    selectAll ({ list, check = true, current = '' }) {
-      let data
-      // 无限递归
-      const setAllChecked = (data, check) => {
-        data.forEach(ret => {
-          if (ret.children && ret.children.length) setAllChecked(ret.children, check)
-          this.$set(ret, 'check', check)
-        })
-      }
-      if (current) {
-        const item = getNameOfData(list, current)
-        data = item.children
-      } else data = list
-      setAllChecked(data, check)
-    },
-    // 删除已选
-    delTag ({ list, name }) {
-      const data = getNameOfData(list, name)
-      if (data.children && data.children.length) {
-        this.selectAll({ list, check: false, current: data.value })
-      } else {
-        this.$set(data, 'check', false)
-      }
-    },
-    // 清空全部
-    clearTag ({ list }) {
-      clearTagOfData(list, this)
-    },
-    // 清空时间段
-    clearWeektime () {
-      this.weektimeData.forEach(item => {
-        item.child.forEach(t => {
-          this.$set(t, 'check', false)
-        })
-      })
-    },
     confirm () {
       this.switchBell = !this.switchBell
     },
