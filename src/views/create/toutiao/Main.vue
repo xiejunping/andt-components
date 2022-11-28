@@ -8,10 +8,9 @@
 </template>
 <script>
 import modulers from '@/data/toutiao/modulers.json'
-import Steper from '@/components/steper'
 export default {
   name: 'tencentMain',
-  components: { Steper },
+  components: { },
   data () {
     const Routes = ['campaign', 'plan', 'creative']
     const { path } = this.$route

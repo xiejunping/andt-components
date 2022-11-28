@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <vue-danmaku :danmus="danmus" :style="{height: '300px'}"></vue-danmaku>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App" @on-reg="getReg" />
+    <HelloWorld msg="" @on-reg="getReg" />
     <a-button @click="getDelay">手动触发delay</a-button>
     <a-button type="primary" @click="canBtn">关于我们</a-button>
 
@@ -20,15 +18,13 @@
 
 <script>
 // @ is an alias to /src
-import vueDanmaku from 'vue-danmaku'
 import HelloWorld from '@/components/HelloWorld.vue'
 import { userLogin, userRegister, delay } from '@/api/user.model'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
-    vueDanmaku
+    HelloWorld
   },
   data () {
     return {

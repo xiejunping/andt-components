@@ -50,13 +50,10 @@
   </div>
 </template>
 <script>
-import Moduler from '@/components/moduler'
-import RowForm from '@/components/row-form'
-import lenInput from '@/components/len/input'
-import ErrorPop from '@/components/error-pop'
+
 export default {
   name: 'tencentcampaign',
-  components: { Moduler, RowForm: RowForm, RowItem: RowForm.Item, lenInput, ErrorPop },
+  components: { },
   data () {
     return {
       loading: null,

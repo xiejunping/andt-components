@@ -20,7 +20,6 @@
     "nprogress": "^0.2.0",
     "qs": "^6.9.0",
     "vue": "^2.6.10",
-    "vue-danmaku": "^1.1.1",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1",
     "vxe-table": "^3.1.6",
