@@ -1,32 +1,42 @@
 <template>
   <div class="home">
     <HelloWorld msg="" @on-reg="getReg" />
-    <a-button @click="getDelay">手动触发delay</a-button>
-    <a-button type="primary" @click="canBtn">关于我们</a-button>
+    <div class="container">
+      <div class="al-btn">
+        <a-button @click="getDelay">手动触发delay</a-button>
+        <a-button type="primary" @click="canBtn">关于我们</a-button>
+      </div>
+      <a-row :gutter="24">
+        <a-col :span="12">
+          <ul>
+            <li>广告管理 - &gt;媒体广告&lt;adplan</li>
+            <li @click="$router.push('/promote/adplan/account')">广告账号 - account</li>
+            <li @click="$router.push('/promote/adplan/group')">广告组 - group</li>
+            <li @click="$router.push('/promote/adplan/advertise')">广告计划 - advertise</li>
+            <li @click="$router.push('/promote/adplan/idea')">广告创意 - idea</li>
+          </ul>
+        </a-col>
+        <a-col :span="12">
+          <ul>
+            <li>今日头条 - 新建广告</li>
+            <li @click="$router.push('/create/toutiao/campaign')">创建广告组</li>
+            <li @click="$router.push('/create/toutiao/plan')">创建广告计划</li>
+            <li @click="$router.push('/create/toutiao/creative')">创意创意</li>
+          </ul>
+        </a-col>
+      </a-row>
 
-    <ul>
-      <li>广告管理 - &gt;媒体广告&lt;adplan</li>
-      <li @click="$router.push('/promote/adplan/account')">广告账号 - account</li>
-      <li @click="$router.push('/promote/adplan/group')">广告组 - group</li>
-      <li @click="$router.push('/promote/adplan/advertise')">广告计划 - advertise</li>
-      <li @click="$router.push('/promote/adplan/idea')">广告创意 - idea</li>
-    </ul>
-
-    <ul>
-      <li>今日头条 - 新建广告</li>
-      <li @click="$router.push('/create/toutiao/campaign')">创建广告组</li>
-      <li @click="$router.push('/create/toutiao/plan')">创建广告计划</li>
-      <li @click="$router.push('/create/toutiao/creative')">创意创意</li>
-    </ul>
-
-    <vxe-table
-      :align="allAlign"
-      :data="tableData">
-      <vxe-table-column type="seq" width="60"></vxe-table-column>
-      <vxe-table-column field="name" title="Name"></vxe-table-column>
-      <vxe-table-column field="sex" title="Sex"></vxe-table-column>
-      <vxe-table-column field="age" title="Age"></vxe-table-column>
-    </vxe-table>
+      <br>
+      <br>
+      <vxe-table
+        :align="allAlign"
+        :data="tableData">
+        <vxe-table-column type="seq" width="60"></vxe-table-column>
+        <vxe-table-column field="name" title="Name"></vxe-table-column>
+        <vxe-table-column field="sex" title="Sex"></vxe-table-column>
+        <vxe-table-column field="age" title="Age"></vxe-table-column>
+      </vxe-table>
+    </div>
 
   </div>
 </template>
@@ -104,6 +114,24 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
+.home {
+  width: 100%;
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    .al-btn {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
 
+    ul {
+      padding: 8px 0;
+      li {
+        line-height: 28px;
+      }
+    }
+  }
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <a-layout>
-      <a-layout-header>的覅i大多数</a-layout-header>
-      <a-layout-content style="padding: 15px 16px">
+      <a-layout-header>header大多数</a-layout-header>
+      <a-layout-content style="padding: 15px 16px;max-width:1440px;margin:0 auto;">
         <a-row :gutter="16">
           <a-col :span="6">
             <a-button type="primary" @click="$emit('on-reg')">激活按钮</a-button>
@@ -25,16 +25,16 @@
                 <a-select-option v-for="d in gameData" :key="d.value">{{d.text}}</a-select-option>
               </a-select>
             </a-auto-complete>
+
+            <a-select v-model="game" showSearch placeholder="input search text" :showArrow="false">
+              <a-select-option :value="1">激活</a-select-option>
+              <a-select-option :value="2">充值</a-select-option>
+              <a-select-option :value="3">vip</a-select-option>
+            </a-select>
           </a-col>
         </a-row>
       </a-layout-content>
     </a-layout>
-
-    <a-select v-model="game" showSearch placeholder="input search text" :showArrow="false">
-      <a-select-option :value="1">激活</a-select-option>
-      <a-select-option :value="2">充值</a-select-option>
-      <a-select-option :value="3">vip</a-select-option>
-    </a-select>
   </div>
 </template>
 
