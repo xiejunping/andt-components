@@ -35,6 +35,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 DEMO演示 [https://free.jsvue.cn/andt-components](https://free.jsvue.cn/andt-components/)
 
+组件已经开发到 vue2的组件库里去了  advt-ui 稳定版 0.0.9 , https://gitee.com/ChuPiJiang/AdvtUI 
+
+
+接下来计划把UI库做大做强，让更多做投放的前端开发能获得解放，也希望能够提更多好的建议，或是参与到维护中来
+
 ### 项目描述
 这是一个`vue-cli 3.x` 构建的vue框架，按需加载 `andt-design-vue` 和 `iview` 处理了不兼容的问题。
 
