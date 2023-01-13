@@ -34,7 +34,7 @@
     "babel-plugin-import": "^1.12.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "http-server": "^0.11.1",
+    "http-server": "^14.1.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "stylus": "^0.54.5",
